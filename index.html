@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Mapa Multiplayer</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+  html, body { height: 100%; margin: 0; font-family: Arial, sans-serif; }
+  #map { height: 100%; }
+
+  #loginScreen {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff; padding: 20px; border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); z-index: 2000;
+  }
+
+  input[type=text], input[type=color] { padding:5px; margin:5px 0; width: 100%; }
+  button { padding: 5px 10px; margin-top: 5px; cursor:pointer; }
+
+  .leaflet-popup-content textarea { width: 100%; height: 40px; font-size: 14px; }
+  .user-label { font-size: 16px; font-weight: bold; text-align: center; color: #000; }
+
+  #searchBar {
+    position: absolute; top: 10px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 2000;
+    display:flex;
+    align-items:center;
+    background:white; padding:5px 10px; border-radius:8px; box-shadow:0 0 5px rgba(0,0,0,0.4);
+  }
+  #searchBar input { width:200px; padding:4px; border-radius:4px; border:1px solid #ccc; }
+  #searchBar button { margin-left:5px; padding:4px 8px; border-radius:4px; border:none; background:#007bff; color:white;}
+
+  /* Container fixo para botões de ação */
+  #actionButtons {
+    position: absolute;
+    bottom: 20px; right: 20px;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  #actionButtons button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<div id="loginScreen">
+  <h3>Entrar</h3>
+  <input type="text" id="nomeInput" placeholder="Digite seu nome">
+  <label>Escolha a cor:</label>
+  <input type="color" id="corInput" value="#ff0000">
+  <button onclick="entrar()">Entrar</button>
+</div>
+
+<div id="searchBar">
+  <input type="text" id="searchInput" placeholder="Buscar usuário">
+  <button onclick="buscarUsuario()"></button>
+</div>
+
+<div id="actionButtons">
+  <button onclick="centralizar()"> Centralizar</button>
+  <button onclick="sair()"> Sair</button>
+</div>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
